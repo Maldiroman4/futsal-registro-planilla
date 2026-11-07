@@ -2,6 +2,11 @@
  * Lógica del cliente para el Sistema de Registro de Futsal
  */
 
+// Determinar la URL base de la API (soporta abrir index.html directamente como file:// o vía http://localhost:3000)
+const API_BASE = (window.location.protocol === 'file:' || !window.location.port)
+  ? 'http://localhost:3000'
+  : '';
+
 // Estado global de la aplicación
 const state = {
   players: [], // Array de objetos { id, name, carnet, photoBlob, photoPreviewUrl }
@@ -50,7 +55,7 @@ function setupEventListeners() {
  */
 async function checkHealth() {
   try {
-    const res = await fetch('/api/health');
+    const res = await fetch(`${API_BASE}/api/health`);
     const data = await res.json();
     const badge = elements.connectionStatus;
     badge.className = 'status-badge';
@@ -331,7 +336,7 @@ async function handleFormSubmit(e) {
   elements.btnSubmit.disabled = true;
 
   try {
-    const response = await fetch('/api/register', {
+    const response = await fetch(`${API_BASE}/api/register`, {
       method: 'POST',
       body: formData
     });
