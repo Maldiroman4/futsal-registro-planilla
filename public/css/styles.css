@@ -608,34 +608,121 @@ input[type="text"]:focus {
   }
 }
 
-/* Impresión */
+/* Impresión - Ficha Oficial Limpia en 1 Sola Página */
 @media print {
-  body {
-    background: #fff;
-    color: #000;
-    padding: 0;
+  @page {
+    margin: 10mm;
+    size: letter portrait;
   }
 
-  .app-header, .submit-bar, .add-player-wrapper, .btn-remove-player, .modal-actions {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Ocultar formulario de entrada, cabecera y botones */
+  .app-header,
+  .main-container,
+  #registrationForm,
+  #loadingModal,
+  .modal-actions {
     display: none !important;
   }
 
-  .modal {
-    position: static;
-    background: transparent;
+  /* Mostrar solo la ficha de confirmación */
+  #successModal {
+    display: block !important;
+    position: static !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+    width: 100% !important;
   }
 
-  .modal-content {
-    border: none;
-    box-shadow: none;
-    max-width: 100%;
-    padding: 0;
+  .modal-content.success-content {
+    background: #ffffff !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    color: #000000 !important;
+    text-align: left !important;
+  }
+
+  .success-icon {
+    font-size: 2.5rem !important;
+    margin-bottom: 0.25rem !important;
+    text-align: center !important;
+    display: block !important;
+  }
+
+  .success-content h2 {
+    font-size: 1.6rem !important;
+    color: #111827 !important;
+    margin-bottom: 0.25rem !important;
+    text-align: center !important;
+  }
+
+  #successSummaryText {
+    color: #4b5563 !important;
+    text-align: center !important;
+    margin-bottom: 1.25rem !important;
+    font-size: 0.95rem !important;
   }
 
   .summary-box {
-    background: #fff;
-    color: #000;
-    border: 1px solid #ccc;
-    max-height: none;
+    background: #ffffff !important;
+    border: 2px solid #111827 !important;
+    border-radius: 8px !important;
+    padding: 1.25rem !important;
+    max-height: none !important;
+    color: #000000 !important;
+  }
+
+  .summary-box h4 {
+    color: #111827 !important;
+    font-size: 1.35rem !important;
+    border-bottom: 2px solid #111827 !important;
+    padding-bottom: 0.6rem !important;
+    margin-bottom: 1rem !important;
+    text-transform: uppercase;
+  }
+
+  .summary-players {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.85rem !important;
+  }
+
+  .summary-item {
+    border: 1px solid #d1d5db !important;
+    border-radius: 6px !important;
+    padding: 0.6rem !important;
+    background: #f9fafb !important;
+    page-break-inside: avoid !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.85rem !important;
+  }
+
+  .summary-thumb {
+    width: 48px !important;
+    height: 56px !important;
+    border-radius: 4px !important;
+    border: 1px solid #9ca3af !important;
+    object-fit: cover !important;
+  }
+
+  .summary-item strong {
+    color: #111827 !important;
+    font-size: 0.95rem !important;
+  }
+
+  .summary-item small {
+    color: #4b5563 !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
   }
 }

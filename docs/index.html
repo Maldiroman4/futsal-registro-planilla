@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscripción y Planilla de Futsal | Registro de Clubes</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Cabecera Principal -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="logo-area">
+        <span class="ball-icon">⚽</span>
+        <div>
+          <h1>CAMPEONATO DE FUTSAL</h1>
+          <p class="subtitle">Planilla Oficial de Inscripción de Equipos</p>
+        </div>
+      </div>
+      <div id="connectionStatus" class="status-badge checking">
+        <span class="status-dot"></span>
+        <span class="status-text">Verificando conexión...</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenedor Principal -->
+  <main class="main-container">
+
+    <form id="registrationForm" novalidate>
+      
+      <!-- Paso 1: Datos del Club -->
+      <section class="card club-card">
+        <div class="card-header">
+          <span class="step-pill">Paso 1</span>
+          <h2>Datos del Club</h2>
+        </div>
+        <div class="form-group">
+          <label for="clubName">Nombre del Club o Equipo <span class="required">*</span></label>
+          <div class="input-with-icon">
+            <span class="input-icon">🛡️</span>
+            <input 
+              type="text" 
+              id="clubName" 
+              name="clubName" 
+              placeholder="Ej. Los Halcones Futsal Club" 
+              required 
+              autocomplete="off"
+            >
+          </div>
+          <small class="helper-text">Escribe el nombre oficial con el que competirán en la planilla.</small>
+        </div>
+      </section>
+
+      <!-- Paso 2: Nómina de Jugadores -->
+      <section class="card players-card">
+        <div class="card-header players-header">
+          <div>
+            <span class="step-pill">Paso 2</span>
+            <h2>Nómina de Jugadores</h2>
+            <p class="helper-text">Agrega a cada integrante con su nombre, carnet (CI) y foto.</p>
+          </div>
+          <div class="players-counter">
+            <span class="counter-label">Total:</span>
+            <span id="playerCountDisplay" class="counter-value">0</span>
+          </div>
+        </div>
+
+        <!-- Lista Dinámica de Jugadores -->
+        <div id="playersList" class="players-list">
+          <!-- Las tarjetas de jugadores se insertan dinámicamente con JS -->
+        </div>
+
+        <!-- Botón para añadir jugador -->
+        <div class="add-player-wrapper">
+          <button type="button" id="btnAddPlayer" class="btn btn-secondary btn-add">
+            <span class="icon">+</span> Agregar Otro Jugador
+          </button>
+        </div>
+      </section>
+
+      <!-- Alertas de error en formulario -->
+      <div id="formErrors" class="alert-box alert-error hidden"></div>
+
+      <!-- Barra de Acción y Envío -->
+      <div class="submit-bar">
+        <button type="submit" id="btnSubmit" class="btn btn-primary btn-submit">
+          <span class="btn-text">📤 Enviar Planilla a Google Drive</span>
+        </button>
+      </div>
+
+    </form>
+
+  </main>
+
+  <!-- Modal de Progreso / Envío -->
+  <div id="loadingModal" class="modal hidden">
+    <div class="modal-content loading-content">
+      <div class="spinner"></div>
+      <h3 id="loadingTitle">Procesando planilla...</h3>
+      <p id="loadingMsg">⏳ Subiendo fotos a Google Drive y registrando jugadores en Google Sheets.<br><strong>Suele tardar entre 1 a 2 minutos. Por favor ten paciencia y no cierres esta ventana.</strong></p>
+      <div class="progress-bar-container">
+        <div id="uploadProgressBar" class="progress-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Éxito / Confirmación -->
+  <div id="successModal" class="modal hidden">
+    <div class="modal-content success-content">
+      <div class="success-icon">🏆</div>
+      <h2>¡Inscripción Exitosa!</h2>
+      <p id="successSummaryText">El equipo ha sido registrado correctamente.</p>
+      
+      <div class="summary-box">
+        <h4 id="summaryClubName">Club: -</h4>
+        <div id="summaryPlayersList" class="summary-players"></div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" id="btnNewRegistration" class="btn btn-primary">Registrar Otro Club</button>
+        <button type="button" id="btnPrint" class="btn btn-outline">Imprimir / Guardar Resumen</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
