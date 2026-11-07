@@ -9,8 +9,10 @@ services:
       - key: PORT
         value: 10000
       - key: DRIVE_FOLDER_ID
-        sync: false
+        value: 1QhXA3ziAZagpqfYxl5P-NnN2odTqIYJK
       - key: SPREADSHEET_ID
-        sync: false
+        value: 1-GdsTcnqYE5vnzjAKyCDAWxStZti_tKMXCYqSp2ApR8
+      - key: DRIVE_UPLOAD_SCRIPT_URL
+        value: https://script.google.com/macros/s/AKfycbzV_QdCv1uEQle94e1qlonTvQoU5R4Ol6Q8im8nWNhaKcd5ZU1eewGtQWUg70jZk78N/exec
       - key: GOOGLE_SERVICE_ACCOUNT_KEY
         sync: false
